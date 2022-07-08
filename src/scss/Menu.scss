@@ -1,0 +1,44 @@
+// ---------
+// M E N U S
+// ---------
+details {
+  summary {
+    &.menu-handle {
+      margin: 0; 
+      &.text {
+        &::after {
+          content: ' ';
+          z-index: 0;
+          width: 11px;
+          height: 7px;
+          margin-left: 5px;
+          background: url('../media/down.svg');
+        }
+      }
+      &.icon {
+        height: 15px;
+        padding: 2px 4px;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  .menu-contents {
+    position: absolute;
+    background-color: #fff;
+    z-index: 10;
+    border: 1px solid #cccccc;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 25%);
+    border-radius: 2px;
+
+    ul {
+      padding: 10px;
+      margin: 0;
+      list-style-type: none;
+
+      li {
+        padding: 4px 0;
+      }
+    }
+  }
+}

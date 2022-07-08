@@ -1,0 +1,22 @@
+#ingredients-list-wrapper {
+  display: flex;
+
+  &.no-sauce {
+    .sauce { display: none; }
+  }
+
+  .ingredient-list {
+
+    .ingredient-item {
+
+      &:hover {
+        .menu { visibility: initial; }
+      }
+
+      .menu {
+        visibility: hidden;
+        .menu-handle:hover { background-color: #f2f2f2; }
+      }
+    }
+  }
+}
