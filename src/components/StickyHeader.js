@@ -4,7 +4,7 @@ import top from '../media/top.svg';
 
 function StickyHeader({ curStep, stepTitles }) {
 
-  {/* handle sticky header */}
+  // track sticky header position
   const [fixed, setFixed] = useState(false);
 
   useEffect(() => {

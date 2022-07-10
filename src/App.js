@@ -1,43 +1,43 @@
 import React, { useState, useEffect } from 'react';
+// components
 import MenuHandle from "./components/MenuHandle.js";
 import Outline from "./components/Outline.js";
-import IngredientsList from "./components/IngredientsList.js";
+import IngredientsList from "./components/List/IngredientsList.js";
 import Section from "./components/Section.js";
+// data
+import { getIngredients } from "./data/ingredients.js";
+import { getSections } from "./data/sections.js";
+// stylesheets
 import './scss/App.scss';
 import './scss/Menu.scss';
 
 function App() {
 
-  const [steps, setSteps] = useState([
-    'Start tomato sauce',
-    'Slice & dry eggplant',
-    'Wait (45mins)',
-    'Fry eggplant slices',
-    'Assemble sauce, eggplant, & cheese in dish',
-    'Cook'
-  ]);
+  const ingredientsLists = getIngredients();
+  const sectionsInitial = getSections();
 
-  {/* track options */}
+  const [sections, setSections] = useState(sectionsInitial);
+
+  // track options
   const [options, setOptions] = useState({
     'sauce': true,
     'healthier': false,
     'vegan': false,
   });
 
-  {/* handle change of sauce toggle */}
+  // handle change of sauce toggle
   const handleChange = (event) => {
-    let stepsVar = steps;
-    if (options.sauce) {
-      stepsVar.splice(0, 1);
-      setSteps(stepsVar);
-    } else {
-      stepsVar.unshift('Start tomato sauce');
-      setSteps(stepsVar);
-    }
-    setOptions({...options, "sauce": !options.sauce });
+    setSections(currState =>
+      currState.map(section => {
+        if (section.section === 'Start tomato sauce') {
+          return {...section, enabled: !currState[0].enabled};
+        }
+        return section;
+      }),
+    );
   }
 
-  {/* track which step is active */}
+  // track which step is active
   const [currStep, setCurrStep] = useState(null);
 
   useEffect(() => {
@@ -61,10 +61,20 @@ function App() {
     });
   });
 
+  function getSectionTitles() {
+    const sectionTitles = [];
+    sections.forEach(function(section) {
+      if (section.enabled) {
+        sectionTitles.push(section.section);
+      }
+    });
+    return sectionTitles;
+  }
+
   return (
     <div id="App">
 
-      {/* header */}
+      {/* Header */}
       <header>
         <h1>Eggplant parmesan</h1>
         <div className="options-bar">
@@ -96,8 +106,10 @@ function App() {
         </div>
       </header>
 
-      {/* outline */}
-      <Outline curStep={currStep} stepTitles={steps} />
+      {/* Outline section */}
+      <Outline curStep={currStep} stepTitles={getSectionTitles()} />
+
+      {/* Ingredients section */}
       <section id="ingredients">
         <span data-step="ingredients"></span>
         <details open>
@@ -107,17 +119,28 @@ function App() {
             'i' :
             'no-sauce'
           }>
-            <IngredientsList />
+          {/* Ingredients lists */}
+          {ingredientsLists.map((list, index) =>
+            <IngredientsList
+              section={list.section}
+              items={list.items}
+              key={list.section}
+            />
+          )}
           </div>
         </details>
       </section>
 
-      {/* steps */}
-      {
-        steps.map((step, index) =>
-          <Section stepNumb={index} stepName={step} key={step} />
-        )
-      }
+      {/* Steps sections */}
+      {sections.map((section, index) =>
+        section.enabled ?
+          <Section
+            index={index}
+            section={section}
+            key={section.section}
+          /> :
+          null
+      )}
     </div>
   );
 }
