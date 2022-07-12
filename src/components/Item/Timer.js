@@ -7,30 +7,33 @@ function Timer({ time }) {
   useEffect(() => {
     if (seconds === 0) {
       clearInterval(intervalId);
+      setIntervalId('done');
     }
   });
 
-  let formattedTime = new Date(seconds * 1000).toISOString();
-  let formattedTimeSubstring;
-
-  if (seconds < 60) {
-    formattedTimeSubstring = formattedTime.substring(15, 19);
-  } else if (seconds < 3600) {
-    formattedTimeSubstring = formattedTime.substring(14, 19);
-  } else {
-    formattedTimeSubstring = formattedTime.substring(11, 19);
-  }
-
   const startTimer = () => {
+    // track setInterval ID
     let newIntervalId = setInterval(() => {
       setSeconds(seconds => seconds - 1);
     }, 1000);
     setIntervalId(newIntervalId);
   }
 
+  let formattedTime = new Date(seconds * 1000).toISOString();
+  let formattedTimeSubstring;
+
+  if (seconds < 540) {
+    formattedTimeSubstring = formattedTime.substring(15, 19);
+  } else if (seconds < 3600) {
+    formattedTimeSubstring = formattedTime.substring(14, 19);
+  } else {
+    formattedTimeSubstring = formattedTime.substring(12, 19);
+  }
+
+
   return (
     <div
-      className="time"
+      className={'time '+(intervalId === 'done' ? 'done' : 'i')}
       onClick={startTimer}
     >
       {formattedTimeSubstring}

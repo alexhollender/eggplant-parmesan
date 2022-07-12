@@ -34,10 +34,12 @@ function StickyHeader({ curStep, stepTitles }) {
       }
 
       <header id="sticky-header" className={fixed ? 'fixed' : 'i'}>
-        <div id="to-top" onClick={toTop}><img src={top} /></div>
           <nav>
-            {
-              stepTitles.map((title, index) =>
+            {fixed ?
+              <a href="#top">[Top]</a> :
+              null
+            }
+            {stepTitles.map((title, index) =>
               <a
                 href={`#`+index}
                 key={index}
@@ -45,8 +47,7 @@ function StickyHeader({ curStep, stepTitles }) {
                 >
                 {title}
               </a>
-            )
-          }
+            )}
         </nav>
       </header>
     </>

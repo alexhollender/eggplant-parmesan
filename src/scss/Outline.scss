@@ -1,0 +1,23 @@
+// Outline
+#outline {
+  #outline-media {
+    width: 100vw;
+    transform: translateX(-50px);
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 14px;
+
+    div {
+      min-width: 600px;
+      margin-right: 20px;
+
+      &:first-child { padding-left: 50px; }
+
+      img { width: 100%; }
+    }
+  }
+
+  #description {
+    max-width: 50%;
+  }
+}

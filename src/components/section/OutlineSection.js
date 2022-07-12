@@ -1,8 +1,9 @@
-import StickyHeader from "./StickyHeader.js";
-import eggplant1 from '../media/eggplant-1.webp';
-import placeholder from '../media/placeholder.webp';
+import StickyHeader from "../StickyHeader.js";
+import '../../scss/Outline.scss';
+import eggplant1 from '../../media/eggplant-1.webp';
+import placeholder from '../../media/placeholder.webp';
 
-function Outline({ curStep, stepTitles }) {
+function OutlineSection({ curStep, stepTitles }) {
 
   return (
     <section id="outline">
@@ -26,4 +27,4 @@ function Outline({ curStep, stepTitles }) {
   );
 }
 
-export default Outline;
+export default OutlineSection;

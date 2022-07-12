@@ -1,0 +1,25 @@
+// Instructions section
+.instructions-section {
+  .scroll-offset {
+    position: absolute;
+    top: -50px;
+    visibility: hidden;
+    z-index: -1;
+  }
+
+  .section-contents-wrapper {
+    display: flex;
+    .left, .right {
+      width: 50%;
+    }
+    
+    .step-summary {
+      margin: 0 0 24px 0;
+    }
+
+    .step-list-wrapper {
+      .step-list { margin: 0 0 24px 0; }
+    }
+  }
+
+}

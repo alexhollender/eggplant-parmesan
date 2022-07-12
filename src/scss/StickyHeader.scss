@@ -21,27 +21,9 @@
     margin: 0;
 
     nav {
-      margin: 8px 50px 8px 0;
+      margin: 6px 50px 6px 50px;
       line-height: initial;
     }
-
-    #to-top { display: flex; }
-  }
-
-  #to-top {
-    display: none;
-    width: 50px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.4;
-    transition: opacity 300ms;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    img { width: 9px; height: 16px; }
   }
 
   nav {
@@ -56,7 +38,7 @@
       &.active { color: gray; text-decoration: underline; }
 
       // add next arrow
-      &:not(:last-child)::after {
+      &:not(:last-child, :first-child)::after {
         content: url('../media/arrow-right.svg');
         padding-left: 10px;
       }

@@ -1,4 +1,4 @@
-import StepItem from "../Item/StepItem.js";
+import StepItem from "../item/StepItem.js";
 
 function StepList({ steps, id, index }) {
 
