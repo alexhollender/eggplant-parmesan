@@ -1,0 +1,31 @@
+// ----------
+// Item menus
+// ----------
+
+.list-item {
+  &:hover {
+    .menu .menu-handle { visibility: initial; }
+  }
+  .menu {
+    &[open] {
+      .menu-handle {
+        visibility: initial;
+        background-color: #f2f2f2;
+      }
+    }
+    .menu-handle {
+      visibility: hidden;
+      &:hover { background-color: #f2f2f2; }
+    }
+  }
+
+  .video-wrapper {
+    background-color: #000;
+    
+    .video-title {
+      color: #fff;
+      text-align: center;
+      padding: 4px;
+    }
+  }
+}

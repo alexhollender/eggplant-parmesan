@@ -23,25 +23,35 @@
     nav {
       margin: 6px 50px 6px 50px;
       line-height: initial;
+
+      #top-link { padding: 0 8px 0 0; }
+
+      a { padding: 0 4px; }
     }
   }
 
   nav {
     line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+
+    div { min-width: fit-content; }
 
     a {
-      padding-right: 10px;
       color: black;
       text-decoration: none;
 
       &:hover { text-decoration: underline; }
-      &.active { color: gray; text-decoration: underline; }
-
-      // add next arrow
-      &:not(:last-child, :first-child)::after {
-        content: url('../media/arrow-right.svg');
-        padding-left: 10px;
+      &.active {
+        color: #fff;
+        background: #000;
+        border-radius: 2px;
+        &:hover { text-decoration: none; }
       }
+    }
+
+    .arrow-right {
+      padding: 0 8px;
     }
   }
 }

@@ -1,27 +1,10 @@
-import React, { useEffect } from 'react';
-
-function MenuHandle({ type, label }) {
-
-  useEffect(() => {
-    const menus = document.querySelectorAll('details.menu');
-
-    // click the body, close all menus
-    document.addEventListener('click', function() {
-      menus.forEach(function(element) {
-        element.removeAttribute("open");
-      });
-    });
-
-    // except clicking on menus
-    menus.forEach(function(element) {
-      element.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-    });
-  });
+function MenuHandle({ type, label, handleClick }) {
 
   return (
-    <summary className={'menu-handle '+(type === 'icon' ? 'icon' : 'text')}>
+    <summary
+      className={'menu-handle '+(type === 'icon' ? 'icon' : 'text')}
+      onClick={handleClick}
+    >
       {type === 'icon' ?
         <img src={label} /> :
         <span>{label}</span>

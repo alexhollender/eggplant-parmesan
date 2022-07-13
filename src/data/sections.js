@@ -1,3 +1,6 @@
+import diceOnionWebM from '../media/dice-onion.webm';
+import diceOnionMp4 from '../media/dice-onion.mp4';
+
 const sections = [
   {
     section: 'Start tomato sauce',
@@ -10,11 +13,22 @@ const sections = [
       [
         {
           title: 'Crush <b>garlic cloves</b>',
-          menu: ['item']
+          menu: {
+            video: {
+              webM: 'video link',
+              mp4: 'video link'
+            }
+          }
         },
         {
           title: 'Chop <b>red onion</b>',
-          menu: ['item']
+          menu: {
+            video: {
+              title: 'How to dice an onion',
+              webM: diceOnionWebM,
+              mp4: diceOnionMp4
+            }
+          }
         },
         { title: 'Measure out / ready other ingredients'}
       ],
@@ -90,7 +104,12 @@ const sections = [
         { title: 'Peel <b>eggplant</b>'},
         {
           title: 'Slice <b>eggplant</b>',
-          menu: ['item'],
+          menu: {
+            video: {
+              webM: 'video link',
+              mp4: 'video link'
+            }
+          },
           detail: {
             instruction: 'lengthwise, ½–¾ inch thick'
           }

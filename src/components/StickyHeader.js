@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../scss/StickyHeader.scss';
-import top from '../media/top.svg';
+import arrowRight from '../media/icons/arrow-right.svg';
 
 function StickyHeader({ curStep, stepTitles }) {
 
@@ -36,17 +36,26 @@ function StickyHeader({ curStep, stepTitles }) {
       <header id="sticky-header" className={fixed ? 'fixed' : 'i'}>
           <nav>
             {fixed ?
-              <a href="#top">[Top]</a> :
+              <a href="#top" id="top-link">[Top]</a> :
               null
             }
             {stepTitles.map((title, index) =>
+              <div key={'nav-item'+index}>
               <a
                 href={`#`+index}
-                key={index}
                 className={curStep == index ? 'active' : 'i'}
                 >
                 {title}
               </a>
+
+              {/* add an arrow after each item */}
+              {/* except for the last one */}
+              {
+                index < stepTitles.length-1 ?
+                <img src={arrowRight} className="arrow-right" /> :
+                null
+              }
+            </div>
             )}
         </nav>
       </header>

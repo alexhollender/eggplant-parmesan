@@ -2,6 +2,16 @@ import MenuHandle from "./MenuHandle.js";
 import '../scss/Header.scss';
 
 function Header({ checked, handleChange }) {
+
+  // this function is repeated in the <ItemMenu /> component
+  // should create a second <GeneralMenu /> component
+  function handleClick(e) {
+    if (e.currentTarget.parentElement.hasAttribute('open')) {
+      e.stopPropagation();
+      console.log('pause video clicked menu handle');
+    }
+  }
+
   return (
     <header>
       <h1>Eggplant parmesan</h1>
@@ -16,7 +26,7 @@ function Header({ checked, handleChange }) {
         </div>
         <div className="option">
           <details className="menu">
-            <MenuHandle label="More options" />
+            <MenuHandle label="More options" onClick={handleClick} />
             <div className="menu-contents">
               <ul>
                 <li>

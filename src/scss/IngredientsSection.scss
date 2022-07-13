@@ -1,0 +1,7 @@
+#ingredients-list-wrapper {
+  display: flex;
+
+  &.no-sauce {
+    .sauce { display: none; }
+  }
+}

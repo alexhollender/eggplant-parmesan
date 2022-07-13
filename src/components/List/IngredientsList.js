@@ -1,5 +1,4 @@
 import IngredientItem from "../item/IngredientItem.js";
-import '../../scss/IngredientsList.scss';
 
 function IngredientsList({ section, items }) {
 

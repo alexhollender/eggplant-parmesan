@@ -12,7 +12,7 @@ function IngredientItem({ ingredient, amount }) {
           <label htmlFor={itemId}>
             <b>{ingredient}</b> {amount ? `(`+amount+`)` : null}
           </label>
-          <ItemMenu />
+          <ItemMenu menuType='ingredients-menu' />
         </div>
       </div>
     </li>

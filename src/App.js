@@ -61,9 +61,7 @@ function App() {
       });
     }
 
-    document.querySelectorAll('section').forEach((section) => {
-      observer.observe(section);
-    });
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
   });
 
   function getSectionTitles() {

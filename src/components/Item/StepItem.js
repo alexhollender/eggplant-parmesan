@@ -15,7 +15,7 @@ function StepItem({ step }) {
             {parse(step.title)}
           </label>
           { step.menu ?
-            <ItemMenu /> :
+            <ItemMenu menuInfo={step.menu} menuType='step-menu' /> :
             null
           }
         </div>
