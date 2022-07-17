@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function Video({ title, webm, mp4, videoStart }) {
+function Video({ title, webm, mp4, videoStart, videoPause }) {
 
   useEffect(() => {
     const allVideos = document.querySelectorAll('video');
@@ -8,6 +8,7 @@ function Video({ title, webm, mp4, videoStart }) {
     for (const video of allVideos) {
       // when video is playing, update state of <ItemMenu /> component
       video.addEventListener('playing', videoStart);
+      video.addEventListener('pause', videoPause);
     }
   }, []);
 

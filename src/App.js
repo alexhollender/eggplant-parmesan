@@ -4,6 +4,8 @@ import Header from "./components/Header.js";
 import OutlineSection from "./components/section/OutlineSection.js";
 import IngredientsSection from "./components/section/IngredientsSection.js";
 import StepsSection from "./components/section/StepsSection.js";
+// functions
+import { filterArray, getSectionTitles } from "./functions.js";
 // data
 import { getIngredients } from "./data/ingredients.js";
 import { getSections } from "./data/sections.js";
@@ -12,34 +14,29 @@ import './scss/App.scss';
 import './scss/Menu.scss';
 
 function App() {
+  const [ingredientsFiltered, setIngredientsFiltered] = useState([]);
+  const [sectionsFiltered, setSectionsFiltered] = useState([]);
 
-  const ingredientsLists = getIngredients();
-  const sectionsInitial = getSections();
-
-  const [sections, setSections] = useState(sectionsInitial);
-
-  // track options
-  const [options, setOptions] = useState({
+  // track filters
+  const [filters, setFilters] = useState({
     'sauce': true,
     'healthier': false,
     'vegan': false,
   });
 
-  // handle change of sauce toggle
+  useEffect(() => {
+    // whenever the state of filters changes
+    // update the ingredients and the sections
+    const ingredientsInitial = getIngredients();
+    setIngredientsFiltered(filterArray(ingredientsInitial, filters));
 
-  // update options
+    const sectionsInitial = getSections();
+    setSectionsFiltered(filterArray(sectionsInitial, filters));
+  }, [filters]);
+
+  // update filters
   const handleChange = () => {
-    setOptions({...options, sauce: !options.sauce});
-
-    // update sections array
-    setSections(currState =>
-      currState.map(section => {
-        if (section.section === 'Start tomato sauce') {
-          return {...section, enabled: !currState[0].enabled};
-        }
-        return section;
-      }),
-    );
+    setFilters({...filters, sauce: !filters.sauce});
   }
 
   // track which step is active
@@ -64,46 +61,34 @@ function App() {
     document.querySelectorAll('section').forEach(section => observer.observe(section));
   });
 
-  function getSectionTitles() {
-    const sectionTitles = [];
-    sections.forEach(function(section) {
-      if (section.enabled) {
-        sectionTitles.push(section.section);
-      }
-    });
-    return sectionTitles;
-  }
-
   return (
     <div id="App">
 
       {/* Header */}
       <Header
-        checked={options.sauce}
+        checked={filters.sauce}
         handleChange={handleChange}
       />
 
       {/* Outline section */}
       <OutlineSection
         curStep={currStep}
-        stepTitles={getSectionTitles()}
+        stepTitles={getSectionTitles(sectionsFiltered)}
       />
 
       {/* Ingredients section */}
       <IngredientsSection
-        sauce={options.sauce}
-        ingredientsLists={ingredientsLists}
+        ingredientsLists={ingredientsFiltered}
+        filters={filters}
       />
 
       {/* Steps sections */}
-      {sections.map((section, index) =>
-        section.enabled ?
-          <StepsSection
-            index={index}
-            section={section}
-            key={section.section}
-          /> :
-          null
+      {sectionsFiltered.map((section, index) =>
+        <StepsSection
+          index={index}
+          section={section}
+          key={section.sectionTitle}
+        />
       )}
 
     </div>

@@ -14,15 +14,21 @@ function ItemMenu({ menuInfo, menuType }) {
 
   let allVideos = [];
 
-  // function called by <Video /> component
-  // when a video starts playing
+  // called by <Video /> component when a video is playing
   function ifVideoStarts() {
     setVideoIsPlaying(true);
     console.log('video started');
   }
 
+  // called by <Video /> component when a video is paused
+  function ifVideoPauses() {
+    setVideoIsPlaying(false);
+    console.log('video paused');
+  }
+
+  // called when a menu is closed (if videos are playing)
   function pauseVideos() {
-    if (videoIsPlayingRef) {
+    if (videoIsPlayingRef.current) {
       allVideos.forEach(video => video.pause());
       console.log('pauseVideos ran');
     }
@@ -40,8 +46,7 @@ function ItemMenu({ menuInfo, menuType }) {
       if (openMenus.length) {
         openMenus.forEach(menu => menu.removeAttribute("open"));
         // pause all videos
-        // ⚠️ I don't understand why this doesn't work
-        // without the ref
+        // ⚠️ I don't understand why this doesn't work without the ref
         pauseVideos();
       }
     });
@@ -74,7 +79,13 @@ function ItemMenu({ menuInfo, menuType }) {
             <li>Substitute</li>
             <li>More information</li>
           </ul> :
-          <Video title={menuInfo.video.title} webm={menuInfo.video.webM} mp4={menuInfo.video.mp4} videoStart={ifVideoStarts} />
+          <Video
+            title={menuInfo.video.title}
+            webm={menuInfo.video.webM}
+            mp4={menuInfo.video.mp4}
+            videoStart={ifVideoStarts}
+            videoPause={ifVideoPauses}
+          />
         }
       </div>
     </details>

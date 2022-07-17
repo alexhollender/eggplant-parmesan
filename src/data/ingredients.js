@@ -2,34 +2,113 @@ const ingredients = [
   {
     section: 'main',
     items: [
-      ['Italian eggplants', '4 medium'],
-      ['Panko breadcrumbs', '3 cups'],
-      ['Dried oregano', '1 ½ teaspoons'],
-      ['Black pepper, ground', '1 teaspoon'],
-      ['Parmesean, grated', '1 ½ cups'],
-      ['All-purpose flower', '1 ½ cups'],
-      ['Eggs', '4'],
-      ['Olive oil', '1 ⅓ cups'],
-      ['Basil', '½ cup'],
-      ['Mozzarella, low-moisture, grated', '6oz or 1 ⅓ cups'],
-      ['Fresh mozzarella', '8 ounces']
+        {
+            ingredient: "Italian eggplants",
+            amount: "4 medium"
+        },
+        {
+            ingredient: "Panko breadcrumbs",
+            amount: "3 cups"
+        },
+        {
+            ingredient: "Dried oregano",
+            amount: "1 ½ teaspoons"
+        },
+        {
+            ingredient: "Black pepper, ground",
+            amount: "1 teaspoon"
+        },
+        {
+            ingredient: "Parmesean, grated",
+            amount: "1 ½ cups"
+        },
+        {
+            ingredient: "All-purpose flower",
+            amount: "1 ½ cups"
+        },
+        {
+            ingredient: "Eggs",
+            amount: "4"
+        },
+        {
+            ingredient: "Olive oil",
+            amount: "1 ⅓ cups"
+        },
+        {
+            ingredient: "Fresh basil",
+            amount: "¼ cup"
+        },
+        {
+            ingredient: "Fresh parsley",
+            amount: "¼ cup"
+        },
+        {
+            ingredient: "Mozzarella, low-moisture, grated",
+            amount: "6oz or 1 ⅓ cups"
+        },
+        {
+            ingredient: "Fresh mozzarella",
+            amount: "8 ounces"
+        },
+        {
+          ingredient: "Tomato sauce",
+          amount: '2 24oz cans',
+          filterId: {
+            sauce: false
+          }
+        }
     ]
   },
   {
     section: 'sauce',
     items: [
-      ['Olive oil', '1 ¼ cups'],
-      ['Garlic', '1 head'],
-      ['Red onion', '1 large'],
-      ['Anchovy fillets', '1, oil-packed) (*optional'],
-      ['Red pepper flakes', '½ teaspoon'],
-      ['Tomato paste', '1 tablespoon'],
-      ['White wine', '¼ cup'],
-      ['Whole peeled tomatoes', '2 28oz cans'],
-      ['Basil leaves', '¼ cup'],
-      ['Dried oregano', '½ teaspoon'],
-      ['Kosher salt']
-    ]
+      {
+          ingredient: "Olive oil",
+          amount: "1 ¼ cups"
+      },
+      {
+          ingredient: "Garlic",
+          amount: "1 head"
+      },
+      {
+          ingredient: "Red onion",
+          amount: "1 large"
+      },
+      {
+          ingredient: "Anchovy fillets",
+          amount: "1, oil-packed) (*optional"
+      },
+      {
+          ingredient: "Red pepper flakes",
+          amount: "½ teaspoon"
+      },
+      {
+          ingredient: "Tomato paste",
+          amount: "1 tablespoon"
+      },
+      {
+          ingredient: "White wine",
+          amount: "¼ cup"
+      },
+      {
+          ingredient: "Whole peeled tomatoes",
+          amount: "2 28oz cans"
+      },
+      {
+          ingredient: "Fresh basil",
+          amount: "¼ cup"
+      },
+      {
+          ingredient: "Dried oregano",
+          amount: "½ teaspoon"
+      },
+      {
+          ingredient: "Kosher salt"
+      }
+    ],
+    filterId: {
+      sauce: true
+    }
   }
 ];
 

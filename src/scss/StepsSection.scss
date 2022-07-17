@@ -9,9 +9,11 @@
 
   .section-contents-wrapper {
     display: flex;
-    .left, .right {
-      width: 50%;
+    .left {
+      width: 40%;
+      min-width: 500px;
     }
+    .right { width: 50%; }
 
     .step-summary {
       margin: 0 0 24px 0;
@@ -23,6 +25,7 @@
     .step-list-wrapper {
       .step-list {
         margin: 0 0 24px 0;
+        &:not(:last-child) { border-bottom: 1px solid #eaeaea; }
         .step-item {
           margin: 0 0 16px 0;
 
