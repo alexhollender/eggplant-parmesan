@@ -41,22 +41,19 @@ function ItemMenu({ menuInfo, menuType }) {
 
     // when clicking the body...
     document.addEventListener('click', function(e) {
-      const openMenus = document.querySelectorAll('.menu[open]');
-      // if there are open menus, close them
-      if (openMenus.length) {
-        openMenus.forEach(menu => menu.removeAttribute("open"));
+      // get open menu (if there is one)
+      const openMenu = document.querySelector('.menu[open]');
+      // get the element that was clicked on
+      const target = e.target;
+      // if there is an open menu, and the clicked element is not within a menu
+      if (openMenu && !target.closest('.menu-contents')) {
+        // close the open menu
+        openMenu.removeAttribute("open");
         // pause all videos
         // ⚠️ I don't understand why this doesn't work without the ref
         pauseVideos();
       }
     });
-
-    // except if clicking within a menu
-    const allMenus = document.querySelectorAll('.menu-contents');
-    function stopProp(e) { e.stopPropagation(); }
-    for (const menu of allMenus) {
-      menu.addEventListener('click', stopProp);
-    }
   });
 
   // without this function the menus don't close

@@ -9,7 +9,7 @@ const sections = [
     summary: 'You’re going to be adding things to the pot, stirring often, eventually bringing to a boil, then putting the pot in the oven for the sauce to roast.',
     enabled: true,
     filterId: {
-      sauce: true
+      sauceFromScratch: true
     },
     steps: [
       [

@@ -14,19 +14,20 @@ import './scss/App.scss';
 import './scss/Menu.scss';
 
 function App() {
+  // filtered copies of ingredients and sections
   const [ingredientsFiltered, setIngredientsFiltered] = useState([]);
   const [sectionsFiltered, setSectionsFiltered] = useState([]);
 
-  // track filters
+  // filters
   const [filters, setFilters] = useState({
-    'sauce': true,
-    'healthier': false,
+    'sauceFromScratch': true,
+    'lessOil': false,
     'vegan': false,
   });
 
   useEffect(() => {
-    // whenever the state of filters changes
-    // update the ingredients and the sections
+    // whenever the filters change
+    // filter the ingredients and the sections copies
     const ingredientsInitial = getIngredients();
     setIngredientsFiltered(filterArray(ingredientsInitial, filters));
 
@@ -35,8 +36,10 @@ function App() {
   }, [filters]);
 
   // update filters
-  const handleChange = () => {
-    setFilters({...filters, sauce: !filters.sauce});
+  const handleFilterChange = (e) => {
+    const filterKey = e.target.name;
+    console.log(e.target.name);
+    setFilters({...filters, [filterKey]: !filters[filterKey]});
   }
 
   // track which step is active
@@ -66,8 +69,8 @@ function App() {
 
       {/* Header */}
       <Header
-        checked={filters.sauce}
-        handleChange={handleChange}
+        filters={filters}
+        handleFilterChange={handleFilterChange}
       />
 
       {/* Outline section */}

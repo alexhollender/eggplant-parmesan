@@ -54,7 +54,7 @@ const ingredients = [
           ingredient: "Tomato sauce",
           amount: '2 24oz cans',
           filterId: {
-            sauce: false
+            sauceFromScratch: false
           }
         }
     ]
@@ -107,7 +107,7 @@ const ingredients = [
       }
     ],
     filterId: {
-      sauce: true
+      sauceFromScratch: true
     }
   }
 ];
