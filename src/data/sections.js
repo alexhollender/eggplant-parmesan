@@ -7,10 +7,7 @@ const sections = [
   {
     sectionTitle: 'Start tomato sauce',
     summary: 'You’re going to be adding things to the pot, stirring often, eventually bringing to a boil, then putting the pot in the oven for the sauce to roast.',
-    enabled: true,
-    filterId: {
-      sauceFromScratch: true
-    },
+    filterId: { sauceFromScratch: true },
     steps: [
       [
         { title: 'Preheat oven to 350°' }
@@ -104,7 +101,6 @@ const sections = [
   {
     sectionTitle: 'Slice & dry eggplant',
     summary: 'You’re going to peel, slice, salt, then setup the eggplant slices to dry. (Why bother drying the eggplant? For one the eggplant juices are bitter. Also  the eggplant will fry and bake better if it is dryer.)',
-    enabled: true,
     steps: [
       [
         { title: 'Peel <b>eggplant</b>'},
@@ -135,15 +131,20 @@ const sections = [
   {
     sectionTitle: 'Wait (45mins)',
     summary: 'The eggplant slices take about an hour to dry out (you can dry them for longer if you would like). Wait about 45 minutes, then start the next section, and then the eggplant slices should be ready by the time you need them. In the meantime you can read the Wikipedia article about <a href="https://en.wikipedia.org/wiki/Parmigiana" target="_blank">Eggplant Parmesan</a>.',
-    enabled: true
   },
   {
     sectionTitle: 'Fry eggplant slices',
     summary: 'Make the breading mixture, then coat and fry the eggplant slices.',
-    enabled: true,
     steps: [
       [
-        { title: 'Put <b>panko</b>, <b>oregano</b>, <b>pepper</b>, and <b>¾ cup Parmesan</b> in a food processor, and process until very finely ground. This is your breading mixture.' },
+        {
+          title: 'Put <b>panko</b>, <b>oregano</b>, <b>pepper</b>, and <b>¾ cup Parmesan</b> in a food processor, and process until very finely ground. This is your breading mixture.',
+          filterId: { vegan: false }
+        },
+        {
+          title: 'Put <b>panko</b>, <b>oregano</b>, <b>pepper</b>, and (optionally) <b>¾ cup vegan parmesan</b> in a food processor, and process until very finely ground. This is your breading mixture.',
+          filterId: { vegan: true }
+        },
         { title: 'Setup three shallow bowls: 1 with <b>flower</b>, 1 with <b>eggs (4 large, beaten)</b>, and 1 with <b>breading mixture</b>. Setup <b>eggplant slices</b> next to bowls, and a wire rack or baking sheet to put them on once coated.'},
         { title: 'Working one at a time: dredge <b>eggplant slices</b> in <b>flour</b>, dip in <b>egg</b> (allowing excess to drip off), then coat in <b>breading mixture</b> (packing all around, then shaking off excess). Place on wire rack or baking sheet.'}
       ],
@@ -162,13 +163,26 @@ const sections = [
   {
     sectionTitle: 'Assemble sauce, eggplant, & cheese in baking dish',
     summary: 'Assemble layers of sauce, cheese, and eggplant slices in a baking dish.',
-    enabled: true,
     steps: [
       [
         { title: 'Preheat oven to 350°'},
         { title: 'Chop <b>fresh basil</b> and <b>fresh parsley</b>' },
-        { title: 'Grate <b>mozzarella (low-moisture)</b>' },
-        { title: 'In a bowl: combine <b>basil</b>, <b>parsley</b>, <b>mozzarella</b>, and <b>parmesan</b> (¾ cup). This will be your <b>cheese mixture</b>.'},
+        {
+          title: 'Grate <b>mozzarella (low-moisture)</b>',
+          filterId: { vegan: false }
+        },
+        {
+          title: 'Grate <b>vegan mozzarella (low-moisture)</b>',
+          filterId: { vegan: true }
+        },
+        {
+          title: 'In a bowl: combine <b>basil</b>, <b>parsley</b>, <b>mozzarella</b>, and <b>parmesan</b> (¾ cup). This will be your <b>cheese mixture</b>.',
+          filterId: { vegan: false }
+        },
+        {
+          title: 'In a bowl: combine <b>basil</b>, <b>parsley</b>, <b>vegan mozzarella</b>, and (optionally) <b>vegan parmesan (¾ cup)</b>. This will be your <b>cheese mixture</b>.',
+          filterId: { vegan: true }
+        },
         {
           title: 'In a baking dish: spread a layer of <b>sauce</b> (about 1 cup), then on top a layer of <b>cheese mixture</b>, then on top a layer of <b>eggplant slices</b>.',
           detail: {
@@ -181,14 +195,13 @@ const sections = [
   {
     sectionTitle: 'Bake',
     summary: '',
-    enabled: true,
+    filterId: { vegan: false },
     steps: [
       [
         {
           title: 'Cover baking dish with foil and bake for 1 hour (350°)',
           detail: {
-            time: 1*3600,
-            instruction: 'eggplant should be custardy'
+            time: 1*3600
           }
         },
         { title: 'Remove from oven, and remove foil. Add a layer of <b>fresh mozzarella</b> to top of dish.' },
@@ -201,7 +214,22 @@ const sections = [
         },
         { title: 'Let rest 30 minutes. Top with basil leaves just before slicing. '}
       ],
-
+    ]
+  },
+  {
+    sectionTitle: 'Bake',
+    summary: '',
+    filterId: { vegan: true },
+    steps: [
+      [
+        {
+          title: 'Cover baking dish with foil and bake for 1 hour and 20 minutes (350°)',
+          detail: {
+            time: 80*60
+          }
+        },
+        { title: 'Let rest 30 minutes. Top with basil leaves just before slicing. '}
+      ],
     ]
   }
 ];

@@ -3,7 +3,7 @@ import '../../scss/Outline.scss';
 import eggplant1 from '../../media/eggplant-1.webp';
 import placeholder from '../../media/placeholder.webp';
 
-function OutlineSection({ curStep, stepTitles }) {
+function OutlineSection({ stepTitles }) {
 
   return (
     <section id="outline">
@@ -11,7 +11,7 @@ function OutlineSection({ curStep, stepTitles }) {
       <details open>
         <summary><h2 id="recipe-outline-header">Recipe outline</h2></summary>
         <div>
-          <StickyHeader curStep={curStep} stepTitles={stepTitles} />
+          <StickyHeader stepTitles={stepTitles} />
           <div id="outline-media">
             <div>Finished dish<img src={eggplant1} /></div>
             <div>2<img src={placeholder} /></div>

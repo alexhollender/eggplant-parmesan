@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../scss/StickyHeader.scss';
 import arrowRight from '../media/icons/arrow-right.svg';
 
-function StickyHeader({ curStep, stepTitles }) {
+function StickyHeader({ stepTitles }) {
 
-  // track sticky header position
+  // observe when to set the sticky header to fixed position
   const [fixed, setFixed] = useState(false);
 
   useEffect(() => {
@@ -22,9 +22,27 @@ function StickyHeader({ curStep, stepTitles }) {
     observer.observe(target);
   });
 
-  function toTop() {
-    window.scrollTo(0, 0);
-  }
+  // observe which section is currently active
+  const [curStep, setCurStep] = useState(null);
+
+  useEffect(() => {
+    let options = {
+      threshold: 0,
+      rootMargin: '0px 0px -80% 0px'
+    }
+
+    let observer = new IntersectionObserver(handleIntersect, options);
+
+    function handleIntersect(sections) {
+      sections.forEach((section) => {
+        if (section.isIntersecting) {
+          setCurStep(section.target.dataset.step);
+        }
+      });
+    }
+
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
+  });
 
   return (
     <>

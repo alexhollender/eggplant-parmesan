@@ -1,4 +1,5 @@
 import IngredientsList from "../list/IngredientsList.js";
+import _ from 'lodash';
 import '../../scss/IngredientsSection.scss';
 
 function IngredientsSection({ ingredientsLists, filters }) {
@@ -14,7 +15,7 @@ function IngredientsSection({ ingredientsLists, filters }) {
           <IngredientsList
             section={list.section}
             items={list.items}
-            key={list.section}
+            key={_.uniqueId('key_')}
             filters={filters}
           />
         )}

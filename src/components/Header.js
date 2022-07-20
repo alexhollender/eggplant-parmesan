@@ -8,7 +8,6 @@ function Header({ filters, handleFilterChange }) {
   function handleClick(e) {
     if (e.currentTarget.parentElement.hasAttribute('open')) {
       e.stopPropagation();
-      console.log('pause video clicked menu handle');
     }
   }
 
@@ -37,7 +36,7 @@ function Header({ filters, handleFilterChange }) {
         </div>
         <div className="option">
           <details className="menu">
-            <MenuHandle label="More options" onClick={handleClick} />
+            <MenuHandle label="More options" handleClick={handleClick} />
             <div className="menu-contents">
               <ul>
                 <li>

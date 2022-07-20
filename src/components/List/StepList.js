@@ -1,13 +1,23 @@
+import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
+import { filterArray } from "../../functions.js";
 import StepItem from "../item/StepItem.js";
 
-function StepList({ steps, id, index }) {
+function StepList({ steps, filters, index }) {
+  // store filtered steps
+  const [stepsFiltered, setStepsFiltered] = useState([]);
+
+  useEffect(() => {
+    // when component loads, or when filters change, filter ingredients
+    setStepsFiltered(filterArray(steps, filters));
+  }, [filters]);
 
   return (
     <ul className="list step-list">
     {
-      steps.map((step, index) =>
+      stepsFiltered.map((step, index) =>
         <StepItem
-          key={id+index}
+          key={_.uniqueId('key_')}
           step={step}
         />
       )

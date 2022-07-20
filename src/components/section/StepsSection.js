@@ -1,11 +1,9 @@
 import StepList from "../list/StepList.js";
+import _ from 'lodash';
 import parse from 'html-react-parser';
 import '../../scss/StepsSection.scss';
 
-function StepsSection({ index, section }) {
-
-  const steps = section.steps;
-  const key = section.sectionTitle.replace(/\s/g, '')+index;
+function StepsSection({ index, section, filters }) {
 
   return (
     <section data-step={index} className="instructions-section">
@@ -14,11 +12,18 @@ function StepsSection({ index, section }) {
         <summary><h2>{section.sectionTitle}</h2></summary>
         <div className="section-contents-wrapper">
           <div className="left">
-            <div className="step-summary serif">{parse(section.summary)}</div>
+            { section.summary ?
+              <div className="step-summary serif">{parse(section.summary)}</div> :
+              null
+            }
             {section.steps ?
               <div className="step-list-wrapper">
               {section.steps.map((steps, index) =>
-                <StepList steps={steps} key={key+index} id={key+index} />
+                <StepList
+                  steps={steps}
+                  filters={filters}
+                  key={_.uniqueId('key_')}
+                />
               )}
               </div> :
               null

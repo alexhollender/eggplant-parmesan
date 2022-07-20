@@ -15,12 +15,18 @@ const ingredients = [
             amount: "1 ½ teaspoons"
         },
         {
-            ingredient: "Black pepper, ground",
+            ingredient: "Black pepper (ground)",
             amount: "1 teaspoon"
         },
         {
-            ingredient: "Parmesean, grated",
-            amount: "1 ½ cups"
+            ingredient: "Parmesean (grated)",
+            amount: "1 ½ cups",
+            filterId: { vegan: false }
+        },
+        {
+            ingredient: "Vegan parmesean (grated) (optional)",
+            amount: "1 ½ cups",
+            filterId: { vegan: true }
         },
         {
             ingredient: "All-purpose flower",
@@ -43,19 +49,24 @@ const ingredients = [
             amount: "¼ cup"
         },
         {
-            ingredient: "Mozzarella, low-moisture, grated",
-            amount: "6oz or 1 ⅓ cups"
+            ingredient: "Mozzarella, low-moisture (grated)",
+            amount: "6oz or 1 ⅓ cups",
+            filterId: { vegan: false }
         },
         {
             ingredient: "Fresh mozzarella",
-            amount: "8 ounces"
+            amount: "8 ounces",
+            filterId: { vegan: false }
+        },
+        {
+          ingredient: "Vegan mozzarella (grated)",
+          amount: "6oz or 1 ⅓ cups",
+          filterId: { vegan: true }
         },
         {
           ingredient: "Tomato sauce",
           amount: '2 24oz cans',
-          filterId: {
-            sauceFromScratch: false
-          }
+          filterId: { sauceFromScratch: false }
         }
     ]
   },

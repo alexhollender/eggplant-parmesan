@@ -4,6 +4,8 @@ import Video from "../Video.js";
 import '../../scss/ItemMenu.scss';
 import more from '../../media/icons/more.svg';
 
+let allVideos = [];
+
 function ItemMenu({ menuInfo, menuType }) {
 
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -11,20 +13,6 @@ function ItemMenu({ menuInfo, menuType }) {
   // within useEffect (because the component doesn't)
   const videoIsPlayingRef = useRef();
   videoIsPlayingRef.current = videoIsPlaying;
-
-  let allVideos = [];
-
-  // called by <Video /> component when a video is playing
-  function ifVideoStarts() {
-    setVideoIsPlaying(true);
-    console.log('video started');
-  }
-
-  // called by <Video /> component when a video is paused
-  function ifVideoPauses() {
-    setVideoIsPlaying(false);
-    console.log('video paused');
-  }
 
   // called when a menu is closed (if videos are playing)
   function pauseVideos() {
@@ -35,7 +23,6 @@ function ItemMenu({ menuInfo, menuType }) {
   }
 
   useEffect(() => {
-    console.log('videos are ' + videoIsPlaying);
     // get all videos (for the purpose of pausing them)
     allVideos = document.querySelectorAll('video');
 
@@ -56,7 +43,7 @@ function ItemMenu({ menuInfo, menuType }) {
     });
   });
 
-  // without this function the menus don't close
+  // ⚠️ without this function the menus don't close
   // if you click on their handle a second time
   function handleClick(e) {
     if (e.currentTarget.parentElement.hasAttribute('open')) {
@@ -80,8 +67,7 @@ function ItemMenu({ menuInfo, menuType }) {
             title={menuInfo.video.title}
             webm={menuInfo.video.webM}
             mp4={menuInfo.video.mp4}
-            videoStart={ifVideoStarts}
-            videoPause={ifVideoPauses}
+            setVideoIsPlaying={setVideoIsPlaying}
           />
         }
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 // components
 import Header from "./components/Header.js";
 import OutlineSection from "./components/section/OutlineSection.js";
@@ -38,31 +39,8 @@ function App() {
   // update filters
   const handleFilterChange = (e) => {
     const filterKey = e.target.name;
-    console.log(e.target.name);
     setFilters({...filters, [filterKey]: !filters[filterKey]});
   }
-
-  // track which step is active
-  const [currStep, setCurrStep] = useState(null);
-
-  useEffect(() => {
-    let options = {
-      threshold: 0,
-      rootMargin: '0px 0px -80% 0px'
-    }
-
-    let observer = new IntersectionObserver(handleIntersect, options);
-
-    function handleIntersect(sections) {
-      sections.forEach((section) => {
-        if (section.isIntersecting) {
-          setCurrStep(section.target.dataset.step);
-        }
-      });
-    }
-
-    document.querySelectorAll('section').forEach(section => observer.observe(section));
-  });
 
   return (
     <div id="App">
@@ -75,7 +53,6 @@ function App() {
 
       {/* Outline section */}
       <OutlineSection
-        curStep={currStep}
         stepTitles={getSectionTitles(sectionsFiltered)}
       />
 
@@ -90,7 +67,8 @@ function App() {
         <StepsSection
           index={index}
           section={section}
-          key={section.sectionTitle}
+          filters={filters}
+          key={_.uniqueId('key_')}
         />
       )}
 
